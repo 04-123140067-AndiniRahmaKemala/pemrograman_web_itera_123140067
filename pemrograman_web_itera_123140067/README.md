@@ -32,8 +32,12 @@ Berikut contoh tampilan aplikasi yang sudah jadi:
 
 ## ⚙️ Cara Menjalankan Aplikasi
 
-### 1. Jalankan Langsung
-Karena aplikasi ini berbasis **HTML, CSS, dan JavaScript murni**, kamu bisa langsung membuka file berikut menggunakan browser favoritmu:
+1. Pastikan sudah menginstal Visual Studio Code dan extension Live Server.
+2. Clone atau download repository project ini.
+3. Buka folder project di VS Code.
+4. Klik kanan pada index.html → pilih “Open with Live Server”.
+5. Aplikasi akan berjalan otomatis di browser .
+
 
 
 
