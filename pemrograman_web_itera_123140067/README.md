@@ -24,9 +24,9 @@ Berikut contoh tampilan aplikasi yang sudah jadi:
 
 3. **Statistik & Filter Prioritas**  
   <img width="464" height="577" alt="Screenshot 2025-10-24 162846" src="https://github.com/user-attachments/assets/d6405293-8ce0-4f61-9cc9-5544bf02f987" />
+  <img width="1757" height="784" alt="Screenshot 2025-10-24 144203" src="https://github.com/user-attachments/assets/077e3663-3898-4c92-a75f-8f20013ccf4d" />
 
 
-> 💡 *Catatan:* Simpan tangkapan layar kamu di folder bernama `/screenshots` agar tampil di README.
 
 ---
 
@@ -34,5 +34,6 @@ Berikut contoh tampilan aplikasi yang sudah jadi:
 
 ### 1. Jalankan Langsung
 Karena aplikasi ini berbasis **HTML, CSS, dan JavaScript murni**, kamu bisa langsung membuka file berikut menggunakan browser favoritmu:
+
 
 
