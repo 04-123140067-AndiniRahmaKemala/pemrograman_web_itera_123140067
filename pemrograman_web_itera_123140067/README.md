@@ -17,7 +17,7 @@ Aplikasi ini memungkinkan pengguna untuk:
 Berikut contoh tampilan aplikasi yang sudah jadi:
 
 1. **Halaman Utama (Tampilan Awal)**  
-   ![Screenshot 1](./screenshots/home.png)
+   <img width="1757" height="782" alt="Screenshot 2025-10-24 144058" src="https://github.com/user-attachments/assets/7c262f47-dfac-41ba-a19c-3e9ec6fee4ae" />
 
 2. **Tampilan Form Tambah Tugas**  
    ![Screenshot 2](./screenshots/add-task.png)
@@ -33,3 +33,4 @@ Berikut contoh tampilan aplikasi yang sudah jadi:
 
 ### 1. Jalankan Langsung
 Karena aplikasi ini berbasis **HTML, CSS, dan JavaScript murni**, kamu bisa langsung membuka file berikut menggunakan browser favoritmu:
+
