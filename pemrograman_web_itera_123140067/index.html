@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ My Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ My Study Planner ✨</h1>
+            <p>Atur jadwal belajarmu dengan cute dan efisien! 💕</p>
+        </header>
+
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Quick Stats -->
+                <div class="card">
+                    <h3>📊 Statistik</h3>
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span>Progress Tugas</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 0%">
+                                <span id="progressText"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-item-left">
+                                <span class="stat-icon">📚</span>
+                                <span class="stat-label">Total</span>
+                            </div>
+                            <span class="stat-number" id="totalTasks">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-left">
+                                <span class="stat-icon">⏰</span>
+                                <span class="stat-label">Pending</span>
+                            </div>
+                            <span class="stat-number" id="pendingTasks">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item-left">
+                                <span class="stat-icon">✅</span>
+                                <span class="stat-label">Selesai</span>
+                            </div>
+                            <span class="stat-number" id="doneTasks">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Filter -->
+                <div class="card">
+                    <h3>🎯 Filter Prioritas</h3>
+                    <div class="priority-tags">
+                        <button class="priority-tag active" data-priority="all">Semua</button>
+                        <button class="priority-tag" data-priority="tinggi">🔴 Tinggi</button>
+                        <button class="priority-tag" data-priority="sedang">🟡 Sedang</button>
+                        <button class="priority-tag" data-priority="rendah">🔵 Rendah</button>
+                    </div>
+                </div>
+
+                <!-- Motivational Quote -->
+                <div class="quote-card">
+                    <div class="quote-text" id="quoteText">Loading...</div>
+                    <div class="quote-author" id="quoteAuthor"></div>
+                    <button class="refresh-quote" id="refreshQuote">🔄 Quote Baru</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Search & Filter -->
+                <div class="search-filter-bar">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 Cari tugas atau mata kuliah...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div class="filter-group">
+                        <select id="statusFilter">
+                            <option value="all">Semua Status</option>
+                            <option value="belum">Belum Dikerjakan</option>
+                            <option value="progress">Dalam Pengerjaan</option>
+                            <option value="done">Selesai</option>
+                        </select>
+                        <select id="sortBy">
+                            <option value="deadline">Urutkan: Deadline</option>
+                            <option value="priority">Urutkan: Prioritas</option>
+                            <option value="newest">Urutkan: Terbaru</option>
+                        </select>
+                    </div>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">🔲 Kartu</button>
+                        <button class="view-btn" data-view="list">📋 List</button>
+                    </div>
+                </div>
+
+                <!-- Tasks Grid View -->
+                <div class="tasks-grid" id="tasksGrid">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎀</div>
+                        <p>Belum ada tugas nih! Yuk tambah tugas pertamamu! 💖</p>
+                    </div>
+                </div>
+
+                <!-- Tasks List View -->
+                <div class="tasks-table" id="tasksTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tugas</th>
+                                <th>Mata Kuliah</th>
+                                <th>Deadline</th>
+                                <th>Prioritas</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr>
+                                <td colspan="6">
+                                    <div class="empty-state">
+                                        <div class="empty-state-icon">🎀</div>
+                                        <p>Belum ada tugas nih! 💖</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <button class="add-btn-float" id="openModal">+</button>
+
+        <!-- Modal Form -->
+        <div class="modal" id="taskModal">
+            <div class="modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <div class="modal-header">
+                    <h2>💫 Tugas Baru</h2>
+                </div>
+                
+                <form id="taskForm">
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="taskName">Nama Tugas *</label>
+                            <input type="text" id="taskName" placeholder="Contoh: Essay Bahasa Indonesia" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Mata Kuliah *</label>
+                            <input type="text" id="subject" placeholder="Contoh: Bahasa Indonesia" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deadline">Deadline *</label>
+                            <input type="date" id="deadline" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority">Prioritas *</label>
+                            <select id="priority" required>
+                                <option value="rendah">🔵 Rendah</option>
+                                <option value="sedang" selected>🟡 Sedang</option>
+                                <option value="tinggi">🔴 Tinggi</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status *</label>
+                            <select id="status" required>
+                                <option value="belum">Belum Dikerjakan</option>
+                                <option value="progress">Dalam Pengerjaan</option>
+                                <option value="done">Selesai</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="notes">Catatan (Opsional)</label>
+                            <textarea id="notes" placeholder="Tambahkan catatan untuk tugas ini..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        💾 Simpan Tugas
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <footer>
+            <p>Made with 💖 by andinirhm | © 2025 My Study Planner</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
