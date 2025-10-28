@@ -13,7 +13,7 @@ Aplikasi web untuk manajemen jadwal kuliah, tugas, dan catatan mahasiswa dengan 
 
 ## 🖼️ Screenshot Aplikasi
 
-![Personal Dashboard](image.png)
+<img width="1759" height="940" alt="image" src="https://github.com/user-attachments/assets/a95a6bce-499d-44f4-b4c1-d1d7bc64edec" />
 
 ## ✅ Fitur ES6+ yang Diimplementasikan
 
@@ -50,4 +50,5 @@ Aplikasi web untuk manajemen jadwal kuliah, tugas, dan catatan mahasiswa dengan 
 ---
 
 **Dibuat untuk:** Tugas Praktikum Pemrograman Web  
+
 **Status:** ✅ Selesai dan berfungsi dengan baik
