@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="welcome-section">
+                <h1>Personal Dashboard</h1>
+                <p class="welcome-text">Selamat datang kembali!</p>
+            </div>
+            <div class="datetime-section">
+                <div class="time" id="currentTime">22:59:11</div>
+                <div class="date" id="currentDate">Senin, 27 Oktober 2025</div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="main-grid">
+            <!-- Kolom Kiri -->
+            <div class="left-column">
+                <!-- Jadwal Kuliah -->
+                <section class="card schedule-card">
+                    <div class="card-header">
+                        <h2>📚 Jadwal Kuliah</h2>
+                        <button class="add-btn" onclick="bukaModalKuliah()">+</button>
+                    </div>
+                    <div id="jadwalKuliahList" class="card-content">
+                        <div class="empty-state">Belum ada jadwal kuliah</div>
+                    </div>
+                </section>
+
+                <!-- Data Tugas -->
+                <section class="card tasks-card">
+                    <div class="card-header">
+                        <h2>📝 Data Tugas</h2>
+                        <button class="add-btn" onclick="bukaModalTugas()">+</button>
+                    </div>
+                    <div id="daftarTugas" class="card-content">
+                        <div class="empty-state">Belum ada tugas</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Kolom Kanan -->
+            <div class="right-column">
+                <!-- Cuaca -->
+                <section class="card weather-card">
+                    <div class="card-header">
+                        <h2>🌤️ Cuaca Saat Ini</h2>
+                        <button class="refresh-btn" onclick="ambilCuaca()">🔄</button>
+                    </div>
+                    <div class="card-content">
+                        <div id="weatherInfo" class="weather-info">
+                            <div class="weather-main">
+                                <div class="temperature">25.2°C</div>
+                                <div class="weather-desc">Berawan</div>
+                            </div>
+                            <div class="weather-details">
+                                <div class="weather-item">
+                                    <span class="label">Angin:</span>
+                                    <span class="value">7.2 km/j</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Catatan -->
+                <section class="card notes-card">
+                    <div class="card-header">
+                        <h2>📒 Catatan</h2>
+                        <button class="add-btn" onclick="bukaModalCatatan()">+</button>
+                    </div>
+                    <div id="daftarCatatan" class="card-content notes-list">
+                        <div class="empty-state">Belum ada catatan</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Jadwal Kuliah -->
+    <div id="modalKuliah" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="tutupModal('modalKuliah')">&times;</span>
+            <h2>📚 Tambah Jadwal Kuliah</h2>
+            <form onsubmit="simpanKuliah(event)">
+                <div class="form-group">
+                    <label>Mata Kuliah</label>
+                    <input type="text" id="namaKuliah" required placeholder="Contoh: Jaringan Komputer">
+                </div>
+                <div class="form-group">
+                    <label>Hari</label>
+                    <select id="hariKuliah" required>
+                        <option value="Senin">Senin</option>
+                        <option value="Selasa">Selasa</option>
+                        <option value="Rabu">Rabu</option>
+                        <option value="Kamis">Kamis</option>
+                        <option value="Jumat">Jumat</option>
+                        <option value="Sabtu">Sabtu</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Waktu</label>
+                    <input type="text" id="waktuKuliah" required placeholder="Contoh: 10.00-11.40">
+                </div>
+                <div class="form-group">
+                    <label>Ruang</label>
+                    <input type="text" id="ruangKuliah" required placeholder="Contoh: OK2">
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Tugas -->
+    <div id="modalTugas" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="tutupModal('modalTugas')">&times;</span>
+            <h2>📝 Tambah Tugas</h2>
+            <form onsubmit="simpanTugas(event)">
+                <div class="form-group">
+                    <label>Nama Tugas</label>
+                    <input type="text" id="namaTugas" required placeholder="Contoh: Praktikum Pengweb Tugas 2">
+                </div>
+                <div class="form-group">
+                    <label>Mata Kuliah</label>
+                    <input type="text" id="matkulTugas" required placeholder="Contoh: Pemrograman Web">
+                </div>
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" id="deadlineTugas" required>
+                </div>
+                <div class="form-group">
+                    <label>Prioritas</label>
+                    <select id="prioritasTugas">
+                        <option value="tinggi">Tinggi</option>
+                        <option value="sedang">Sedang</option>
+                        <option value="rendah">Rendah</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Catatan -->
+    <div id="modalCatatan" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="tutupModal('modalCatatan')">&times;</span>
+            <h2>📒 Tambah Catatan</h2>
+            <form onsubmit="simpanCatatan(event)">
+                <div class="form-group">
+                    <label>Judul Catatan</label>
+                    <input type="text" id="judulCatatan" required placeholder="Contoh: Kelas Jaringan Komputer">
+                </div>
+                <div class="form-group">
+                    <label>Isi Catatan</label>
+                    <textarea id="isiCatatan" required placeholder="Tulis catatanmu di sini..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">💾 Simpan</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
