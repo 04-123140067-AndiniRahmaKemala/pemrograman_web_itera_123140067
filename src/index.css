@@ -1,0 +1,439 @@
+/* --- Import Google Font (Poppins - Lebih Bulat & Lucu) --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Keyframes untuk Animasi --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Variabel :root (Tema Pink Peach) --- */
+:root {
+  /* Warna Pink/Peach */
+  --theme-color: #FF8A65; /* Peach/Coral yang cerah */
+  --theme-dark: #F4511E;   /* Peach/Coral lebih gelap */
+  --background-color: #FFF7F5; /* Latar belakang pink/peach sangat muda */
+  --card-background: #ffffff;  /* Kartu solid putih */
+  --card-border: #FFDDE6;       /* Border pink lembut */
+  
+  /* Warna Teks */
+  --text-color: #4A4A4A;
+  --light-text-color: #777;
+  --header-text: #D9462D; /* Teks header yang serasi */
+
+  /* Warna Status & Tombol */
+  --badge-bg: #FFEDD5;   /* Badge status (Peach muda) */
+  --badge-text: #D97706;  /* Teks badge (Oranye tua) */
+  --danger-color: #FF8A65;   /* Tombol Hapus (Peach) */
+  --danger-hover: #FF7043;
+  --edit-btn-bg: #f4f4f4;   /* Tombol Edit (Abu-abu muda) */
+  --edit-btn-text: #555;
+  --edit-btn-hover: #e0e0e0;
+  
+  /* Lain-lain */
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --secondary-color: #6c757d;
+  --border-color: #dee2e6;
+  --shadow-light: rgba(230, 150, 130, 0.1);
+  --shadow-medium: rgba(230, 150, 130, 0.2);
+  --font-sans: 'Poppins', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans); /* Ganti ke font Poppins */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+/* --- Header & Navigation (SOLID) --- */
+.app-header {
+  background-color: #ffffff; /* Header solid putih */
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 4px 10px var(--shadow-light);
+  padding: 20px 40px;
+  margin-bottom: 30px;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.app-nav h1 {
+  font-size: 1.8rem;
+  color: var(--header-text); /* Teks header Peach/Merah */
+  font-weight: 700;
+}
+
+.app-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.app-nav a {
+  text-decoration: none;
+  color: var(--light-text-color);
+  font-weight: 500;
+  font-size: 1.05rem;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app-nav a:hover {
+  background-color: var(--background-color);
+  color: var(--theme-dark);
+}
+
+.app-nav a.active {
+  color: var(--theme-color);
+  font-weight: 600;
+}
+
+/* --- Utility & Card (SOLID) --- */
+.card {
+  background: var(--card-background);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  padding: 28px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 20px var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 25px var(--shadow-medium);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  color: var(--header-text);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* --- Wrapper Animasi Form --- */
+.form-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+}
+.form-wrapper.visible {
+  max-height: 1000px;
+}
+.btn-toggle-form {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+/* --- Form (BookForm) --- */
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--text-color);
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--theme-color);
+  box-shadow: 0 0 0 3px rgba(255, 138, 101, 0.25);
+}
+.form-error {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+}
+
+/* --- Tombol (Buttons) --- */
+.btn {
+  padding: 12px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px var(--shadow-light);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px var(--shadow-medium);
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 4px var(--shadow-light);
+}
+.btn-primary {
+  background-color: var(--theme-color);
+  color: white;
+}
+.btn-primary:hover { background-color: var(--theme-dark); }
+.btn-secondary {
+  background-color: var(--edit-btn-bg);
+  color: var(--edit-btn-text);
+}
+.btn-secondary:hover { background-color: var(--edit-btn-hover); }
+.btn-danger {
+  background-color: var(--danger-color);
+  color: white;
+}
+.btn-danger:hover { background-color: var(--danger-hover); }
+
+/* --- Filter (BookFilter) --- */
+.filter-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+}
+
+/* --- Daftar Buku (BookList) --- */
+.book-list {
+  display: grid;
+  gap: 20px;
+}
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.book-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px var(--shadow-medium);
+}
+.book-item-details h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+  text-align: left;
+}
+.book-item-details p {
+  font-size: 0.95rem;
+  color: var(--light-text-color);
+  font-style: italic;
+  margin: 4px 0 0 0;
+}
+/* Style Badge Status (Peach) */
+.book-item-details .status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 50px; /* Bentuk pil */
+  text-transform: uppercase;
+  margin-top: 12px;
+  box-shadow: none;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+}
+/* Hapus style lama agar tidak konflik */
+.status-milik, .status-baca, .status-beli {
+  background-color: var(--badge-bg) !important;
+  color: var(--badge-text) !important;
+}
+
+.book-item-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.empty-list {
+  text-align: center;
+  padding: 50px;
+  color: var(--light-text-color);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* --- Halaman Stats (Solid Peach) --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+  gap: 20px;
+}
+.stat-item {
+  text-align: center;
+  padding: 25px 20px;
+  border-radius: 12px;
+  background: var(--card-background);
+  box-shadow: 0 4px 12px var(--shadow-light);
+  border: 1px solid var(--card-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px var(--shadow-medium);
+}
+.stat-item .stat-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  color: var(--theme-dark);
+  background-color: var(--background-color);
+  border: 1px solid var(--card-border);
+}
+.stat-item .stat-number {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.1;
+  margin-bottom: 5px;
+}
+.stat-item .stat-label {
+  font-size: 0.9rem;
+  color: var(--light-text-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stats-proportions {
+  margin-top: 40px;
+  border-top: 1px solid var(--card-border);
+  padding-top: 30px;
+}
+.stats-proportions h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: left;
+  margin-bottom: 25px;
+}
+.progress-item {
+  margin-bottom: 20px;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--light-text-color);
+  margin-bottom: 10px;
+}
+.progress-label span:first-child {
+  color: var(--text-color);
+  font-weight: 600;
+}
+.progress-bar-container {
+  width: 100%;
+  height: 16px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid #e0e0e0;
+}
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+  background-color: var(--theme-color);
+}
+.progress-bar.owned {
+  background-color: var(--success-color);
+}
+.progress-bar.reading {
+  background-color: var(--warning-color);
+}
+.progress-bar.to-buy {
+  background-color: var(--secondary-color);
+}
+
+/* --- Modal Konfirmasi (Solid Peach) --- */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+.confirm-modal-content {
+  background: white; /* Solid putih */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px var(--shadow-medium);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: scaleUp 0.3s ease;
+  border: 1px solid var(--card-border);
+}
+.confirm-modal-content h3 {
+  color: var(--header-text);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.confirm-modal-content p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  color: var(--light-text-color);
+  line-height: 1.5;
+}
+.confirm-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+/* Tombol di modal akan otomatis menggunakan style .btn-danger dan .btn-secondary */
